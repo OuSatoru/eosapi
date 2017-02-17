@@ -3,6 +3,7 @@ package main
 import (
 	"io/ioutil"
 	"github.com/OuSatoru/eosapi/htmlpick"
+	"fmt"
 )
 
 func main() {
@@ -14,6 +15,6 @@ func main() {
 	//password := "000000"
 	//fmt.Println(htmlpick.HasLogin(hoyi.Login(userName, password, client, jsessionid)))
 	b, _ := ioutil.ReadFile("Unread.html")
-	htmlpick.UnreadList(string(b))
+	fmt.Println(htmlpick.UnreadListJson(string(b)))
 }
 

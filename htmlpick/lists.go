@@ -2,15 +2,18 @@ package htmlpick
 
 import (
 	"regexp"
-	"fmt"
 )
 
-// {"第一条": "114514", "第二条": "23333"}
-func UnreadList(htm string) {
+// {"114514": "第一条", "23333": "第二条"}
+func UnreadListMap(htm string) map[string]string {
+	m := make(map[string]string)
 	reg := regexp.MustCompile(`<a href="javascript:return void\(0\);" onclick='executeTask\((\d+?)\)'>\s*(\S+?)\s*</a>`)
 	if reg.MatchString(htm) {
-		fmt.Println(reg.FindAllStringSubmatch(htm, -1)[0][1])
+		for _, il := range reg.FindAllStringSubmatch(htm, -1) {
+			m[il[1]] = il[2]
+		}
+		return m
 	} else {
-		fmt.Println("None.")
+		return nil
 	}
 }
