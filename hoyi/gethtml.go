@@ -29,7 +29,7 @@ func Jsessionid() string {
 	}
 }
 
-func Login(userName string, password string, client *http.Client, jsessionid string) string {
+func LoginEos(userName string, password string, client *http.Client, jsessionid string) string {
 	req, err := http.NewRequest("POST", mainpage, strings.NewReader(fmt.Sprintf("_eosFlowAction=login&username=%s&password=%s&companyId=1", userName, password)))
 	if err != nil {
 		panic(err)
