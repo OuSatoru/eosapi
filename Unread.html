@@ -1,0 +1,379 @@
+<script  type="text/javascript"  src="/hoyi/common/javascripts/jquery-1.3.2.js" ></script>
+	<link href="/hoyi/common/theme/style-sys.css" type="text/css" rel="stylesheet" >
+	<link href="/hoyi/css/tablesorter.css" type="text/css" rel="stylesheet" >
+	<link href="/hoyi/css/nav_min_dcb1b309.css" type="text/css" rel="stylesheet" >
+	<script type="text/javascript">
+		jQuery.noConflict();
+	   	var contextPath = "/hoyi"; // you should define the contextPath of web application
+		var EOSDEBUG = false;
+	</script>
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/zh_CN/message.js" ></script>
+	<link href="/hoyi/common/skins/skin0/theme/style-component.css" type="text/css" rel="stylesheet" >
+	<script  type="text/javascript"  src="/hoyi/common/skins/skin0/scripts/resource.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/fckeditor/fckeditor.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/scripts/eos-web.js.gzip" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/lib/mootools.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/hy_common.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/tablesorter.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/FileUpload.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/MultiSelect.js" ></script>
+	
+<link href="/hoyi/css/style1/style-custom.css" type="text/css" rel="stylesheet" >
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>待处理工作项任务</title>
+<script  type="text/javascript"  src="/hoyi/comm/js/otherVilidate.js" ></script>
+<script type="text/javascript">
+	window.onload = function() {
+		appendWaitStyle('entitiesQuery',_QUERY_MSG);
+	}
+</script>
+</head>
+<body>
+
+  <form  id="form0.7604547675411141" name="entitiesQuery" action="com.hoyi.oa.workcenter.workitem_list4todo.flow" target="_self" method="post" onsubmit="return checkForm(this);">
+    <input type="hidden" name="_eosFlowAction" value="queryWithPage"/>
+    <script>var panel = new Panel("panel1");</script><div id="panel1_container" style="width:100%;"><table id="_panel1_panel_table" border="0"  width="100%"  cellspacing="0" cellpadding="0" class="eos-panel-table">	<tr>		<td height="20">		<table  border="0" width="100%" height="20" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="4px"><div class="eos-panel-title-left"></div></td>
+				<td width="20px"class="eos-panel-title"><div id="panel1_button"></div></td>
+				<td ></td>				<td class="eos-panel-title"  nowarp ><nobr id="panel1_title">查询待处理工作</nobr></td>
+				<td width="4px"><div class="eos-panel-title-right"></div></td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+	<tr layout="1">
+		<td  class="eos-panel-body"  valign="top" >
+      <table align="center" border="0" width="100%" class="form_table">
+        <tr>
+          <td class="form_label">流程名称</td>
+          <td colspan="1">
+            <input type="text" name="criteria/_expr[1]/processInstName" filter="false">
+            <input type="hidden" name="criteria/_expr[1]/_op" value="like" filter="false">
+            <input type="hidden" name="criteria/_expr[1]/_likeRule" value="all" filter="false">
+          </td>
+          <td class="form_label">活动名称</td>
+          <td colspan="1">
+            <input type="text" name="criteria/_expr[2]/activityInstName" filter="false">
+            <input type="hidden" name="criteria/_expr[2]/_op" value="like" filter="false">
+            <input type="hidden" name="criteria/_expr[2]/_likeRule" value="all" filter="false">
+          </td>
+          <td class="form_label">工作项名称</td>
+          <td colspan="1">
+            <input type="text" name="criteria/_expr[3]/workItemName" filter="false">
+            <input type="hidden" name="criteria/_expr[3]/_op" value="like" filter="false">
+            <input type="hidden" name="criteria/_expr[3]/_likeRule" value="all" filter="false">
+          </td>
+        </tr>
+        <tr>
+          <td class="form_label">分类</td>
+          <td>
+          	<select name="criteria/_expr[5]/processChName" filter="false">
+          		
+            	
+            		
+            	
+            		
+            	
+          	<option value="">请选择..</option>
+<option value="行内部门签收发文">行内部门签收发文</option>
+<option value="邮件">邮件</option>
+
+</select>
+            <input type="hidden" name="criteria/_expr[5]/_op" value="=" filter="false">
+          </td>
+          <td class="form_label">启动时间</td>
+          <td colspan="3">
+            <input type="hidden" name="criteria/_expr[4]/_op" value="between" filter="false">
+            <input type="hidden" name="criteria/_expr[4]/startTime" value=" " filter="false">
+            <input type="hidden" name="criteria/_expr[4]/_pattern" value="yyyy-MM-dd" filter="false">
+            <table style="border:0px;background-color:transparent" border="0" cellspacing="0" cellpadding="0">
+              <tr style="border: 0px none ; background-color: transparent;">
+                <td style="border: 0px none ; background-color: transparent;">
+                  	从:
+                </td>
+                <td style="border: 0px none ; background-color: transparent;">
+                  <div id="date_1331318578_container" class="eos-ic-container"><input class="eos-calendar-editor-text" type="text" id="date_1331318578_input" validateAttr="type=calendar;allowNull=true" filter="false" tagformat="yyyy-MM-dd" allowNull="true" readOnly="false"/><img id='date_1331318578_button' class="eos-ic-button"/><input type="hidden" name="criteria/_expr[4]/_min" id="date_1331318578_hidden"/></div><script language="javascript">
+var _date =new Calendar("date_1331318578","yyyy-MM-dd");
+_date.readOnly = false;
+_date.init();
+</script>
+                </td>
+                <td style="border: 0px none ; background-color: transparent;">
+                  	到:
+                </td>
+                <td style="border: 0px none ; background-color: transparent;">
+                  <div id="date_839222353_container" class="eos-ic-container"><input class="eos-calendar-editor-text" type="text" id="date_839222353_input" validateAttr="type=calendar;allowNull=true" filter="false" tagformat="yyyy-MM-dd" allowNull="true" readOnly="false"/><img id='date_839222353_button' class="eos-ic-button"/><input type="hidden" name="criteria/_expr[4]/_max" id="date_839222353_hidden"/></div><script language="javascript">
+var _date =new Calendar("date_839222353","yyyy-MM-dd");
+_date.readOnly = false;
+_date.init();
+</script>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="form_bottom">
+          <td colspan="6" class="form_bottom">
+            <input type="hidden" name="criteria/_entity" value="com.eos.workflow.data.WFWorkItem">
+            每页显示
+            <input type="text" name="page/length" value="10" validateAttr="minValue=1;maxValue=100;type=integer;isNull=true" size="2" filter="false">
+            <input type="hidden" name="page/begin" value="0">
+            <input type="hidden" name="page/isCount" value="true">
+            <input type="submit" value="查询" class="button">
+          </td>
+        </tr>
+      </table>
+    </td>	</tr></table></div><script>
+var panel = $o("panel1");
+panel.status = true;
+panel.init();</script>
+
+  <input type='hidden' name='_eosFlowKey' value='f66d7d91-3e6d-40ee-80fb-1b7aff881c15.view0'/></form><script type="text/javascript">checkOnblur($id('form0.7604547675411141'));checkOnsubmit($id('form0.7604547675411141'));</script>
+
+<form  id="form0.6105784821170793" name="entitiesList" action="com.hoyi.oa.workcenter.workitem_list4todo.flow" method="post">
+	<input type="hidden" name="_eosFlowAction" value="queryWithPage">
+	<input type="hidden" name="criteria/_entity" value="com.eos.workflow.data.WFWorkItem"/><input type="hidden" name="criteria/_orderby[1]/_property" value="startTime"/><input type="hidden" name="criteria/_orderby[1]/_sort" value="desc"/>
+	<input type="hidden" name="page/begin" filter="false">
+	<input type="hidden" name="page/length" value="10" filter="false">
+	<input type="hidden" name="page/count" value="4" filter="false">
+	<input type="hidden" name="page/isCount" value="true" filter="false">
+
+		<table align="center" border="0" width="100%" class="EOS_table">
+			<tr>
+				<th width="30" align="center">序号</th>
+				<th>工作项名称</th>
+				
+				
+				<th>当前状态</th>
+				
+				<th>参与者</th>
+				
+				
+				<th>优先级</th>
+				
+				
+				<th>是否超时</th>
+				
+				<th>启动时间</th>
+				
+				
+				
+				
+				
+				<th>流程名称</th>
+				
+				
+				
+				<th>活动名称</th>
+				
+				<th width="60" align="center">操作</th>
+			</tr>
+			
+				<tr class="">
+					<td width="30" align="center">1</td>
+				
+					<td>
+						<a href="javascript:return void(0);" onclick='executeTask(1782076)'>
+							新邮件：贷记卡操作流程(发件人：练亚明)
+						</a>
+					</td>
+					
+					  
+					<td>运行</td>
+					
+					<td>王聪</td>
+					
+					
+					
+					<td>中</td>
+					
+					<td>否</td>
+					
+					<td>2017-02-17 16:28:56</td>
+					
+					
+					
+					
+					
+					
+					<td>练亚明提交的邮件</td>
+					
+					
+					<td>接收邮件</td>
+					<td align="center"> 
+		         		<input id="1782076" type="button" class="button"  value="处理" 
+		         		
+		      			onclick="executeTask(this.id);">
+					</td>
+				</tr>
+			
+				<tr class="EOS_table_row">
+					<td width="30" align="center">2</td>
+				
+					<td>
+						<a href="javascript:return void(0);" onclick='executeTask(1778882)'>
+							发文:转发省联社关于调整现有短信业务相关事项的通知(电子银行部练亚明)---被转发人签收发文
+						</a>
+					</td>
+					
+					  
+					<td>运行</td>
+					
+					<td>王聪</td>
+					
+					
+					
+					<td>中</td>
+					
+					<td>否</td>
+					
+					<td>2017-02-15 18:30:53</td>
+					
+					
+					
+					
+					
+					
+					<td>行内部门签收发文</td>
+					
+					
+					<td>被转发人签收发文</td>
+					<td align="center"> 
+		         		<input id="1778882" type="button" class="button"  value="处理" 
+		         		
+		      			onclick="executeTask(this.id);">
+					</td>
+				</tr>
+			
+				<tr class="">
+					<td width="30" align="center">3</td>
+				
+					<td>
+						<a href="javascript:return void(0);" onclick='executeTask(1778602)'>
+							新邮件：关于开展“向全行员工征集社区银行选址活动”的通知(发件人：练亚明)
+						</a>
+					</td>
+					
+					  
+					<td>运行</td>
+					
+					<td>王聪</td>
+					
+					
+					
+					<td>中</td>
+					
+					<td>否</td>
+					
+					<td>2017-02-15 15:13:38</td>
+					
+					
+					
+					
+					
+					
+					<td>练亚明提交的邮件</td>
+					
+					
+					<td>接收邮件</td>
+					<td align="center"> 
+		         		<input id="1778602" type="button" class="button"  value="处理" 
+		         		
+		      			onclick="executeTask(this.id);">
+					</td>
+				</tr>
+			
+				<tr class="EOS_table_row">
+					<td width="30" align="center">4</td>
+				
+					<td>
+						<a href="javascript:return void(0);" onclick='executeTask(1777879)'>
+							发文:转发省联社关于调整现有短信业务相关事项的通知(电子银行部练亚明)---行内部门签收发文
+						</a>
+					</td>
+					
+					  
+					<td>运行</td>
+					
+					<td>王聪</td>
+					
+					
+					
+					<td>1</td>
+					
+					<td>否</td>
+					
+					<td>2017-02-15 15:05:09</td>
+					
+					
+					
+					
+					
+					
+					<td>行内部门签收发文</td>
+					
+					
+					<td>行内部门签收发文</td>
+					<td align="center"> 
+		         		<input id="1777879" type="button" class="button"  value="处理" 
+		         		
+		      			onclick="executeTask(this.id);">
+					</td>
+				</tr>
+			
+			<tr>
+				<td colspan="10" class="command_sort_area"><span
+					style="float:right"> 
+                共
+                4
+                条记录 第
+                1
+                页/
+                1
+                页
+                <input type="button"
+					onclick="firstPage('page', 'queryWithPage', null, null, 'entitiesList');"
+					value="首页"
+					disabled>
+				<input type="button"
+					onclick="prevPage('page', 'queryWithPage', null, null, 'entitiesList');"
+					value="上页"
+					disabled>
+				<input type="button"
+					onclick="nextPage('page', 'queryWithPage', null, null, 'entitiesList');"
+					value="下页"
+					disabled>
+				
+					<input type="button"
+						onclick="lastPage('page', 'queryWithPage', null, null, 'entitiesList');"
+						value="尾页"
+						disabled>
+				 </span></td>
+			</tr>
+		</table>
+<input type='hidden' name='_eosFlowKey' value='f66d7d91-3e6d-40ee-80fb-1b7aff881c15.view0'/></form><script type="text/javascript">checkOnsubmit($id('form0.6105784821170793'));</script>
+
+<script type="text/javascript">
+	////处理工作
+	function executeTask(workitemID){
+		var pageUrl='com.hoyi.workflow.client.pageflow.executeTask.flow?_eosFlowAction=action0&workitemID='+workitemID;
+		parent.addIframePage(parent._TAB_ID,parent._EXE_PAGE_PARAM[0],parent._EXE_PAGE_PARAM[1],pageUrl,'workitemList4Todo');
+	}
+
+</script>
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
