@@ -91,7 +91,7 @@ func MailUnread(userName string, password string, client *http.Client, jsessioni
 	return getWithCookie(userName, password, client, jsessionid, list4todo)
 }
 
-func ExecTask(userName string, password string, client *http.Client, jsessionid string, taskId string) string {
+func ExecTaskPage(userName string, password string, client *http.Client, jsessionid string, taskId string) string {
 	return getWithCookie(userName, password, client, jsessionid, executeTask + taskId)
 }
 

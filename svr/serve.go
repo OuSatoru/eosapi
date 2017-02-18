@@ -28,6 +28,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//每次到其他页都会读首页，只为读取总邮件数
 func TodoList(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
 	htm := hoyi.MailUnread(vals.UserName, vals.Password, vals.Client, vals.Jsessionid)
@@ -46,4 +47,8 @@ func TodoList(w http.ResponseWriter, r *http.Request) {
 		htm2 := hoyi.MailUnreadPage(vals.UserName, vals.Password, vals.Client, vals.Jsessionid, page, pageLen, pageCount)
 		fmt.Fprint(w, htmlpick.UnreadListJson(htm2))
 	}
+}
+
+func ExecTask(w http.ResponseWriter, r *http.Request) {
+	r.ParseForm()
 }
