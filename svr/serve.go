@@ -1,15 +1,15 @@
 package svr
 
 import (
-	"net/http"
-	"github.com/OuSatoru/eosapi/hoyi"
 	"fmt"
-	"github.com/OuSatoru/eosapi/htmlpick"
 	"html/template"
+	"net/http"
 	"strconv"
+
+	"github.com/OuSatoru/eosapi/hoyi"
+	"github.com/OuSatoru/eosapi/htmlpick"
 	"github.com/OuSatoru/eosapi/vals"
 )
-
 
 func Login(w http.ResponseWriter, r *http.Request) {
 	vals.Jsessionid = hoyi.Jsessionid()

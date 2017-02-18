@@ -1,8 +1,9 @@
 package main
 
 import (
-	"github.com/OuSatoru/eosapi/svr"
 	"net/http"
+
+	"github.com/OuSatoru/eosapi/svr"
 )
 
 func main() {
@@ -19,4 +20,3 @@ func main() {
 	http.HandleFunc("/todolist", svr.TodoList)
 	http.ListenAndServe(":2333", nil)
 }
-

@@ -2,15 +2,15 @@ package hoyi
 
 import (
 	"fmt"
-	"net/http"
-	"strings"
 	"io/ioutil"
+	"net/http"
 	"regexp"
+	"strings"
 )
 
 const (
-	mainpage string = "http://32.185.24.71/hoyi/com.hoyi.desktop.login.flow"
-	list4todo string = "http://32.185.24.71/hoyi/oa/workcenter/com.hoyi.oa.workcenter.workitem_list4todo.flow"
+	mainpage    string = "http://32.185.24.71/hoyi/com.hoyi.desktop.login.flow"
+	list4todo   string = "http://32.185.24.71/hoyi/oa/workcenter/com.hoyi.oa.workcenter.workitem_list4todo.flow"
 	executeTask string = "http://32.185.24.71/hoyi/oa/workcenter/com.hoyi.workflow.client.pageflow.executeTask.flow?_eosFlowAction=action0&workitemID=" //in executeTask(%d)
 )
 
@@ -92,7 +92,7 @@ func MailUnread(userName string, password string, client *http.Client, jsessioni
 }
 
 func ExecTaskPage(userName string, password string, client *http.Client, jsessionid string, taskId string) string {
-	return getWithCookie(userName, password, client, jsessionid, executeTask + taskId)
+	return getWithCookie(userName, password, client, jsessionid, executeTask+taskId)
 }
 
 func MailUnreadPage(userName string, password string, client *http.Client, jsessionid string, page int, pageLen int, pageCount int) string {
@@ -115,7 +115,7 @@ func MailUnreadPage(userName string, password string, client *http.Client, jsess
 }
 
 func beginCk(page int, pageLen int, pageCount int) int {
-	if page > pageCount / pageLen {
+	if page > pageCount/pageLen {
 		return (pageCount / pageLen) * pageLen
 	} else {
 		return (page - 1) * pageLen
@@ -123,7 +123,7 @@ func beginCk(page int, pageLen int, pageCount int) int {
 }
 
 func pageLenCk(page int, pageLen int, pageCount int) int {
-	if page > pageCount / pageLen {
+	if page > pageCount/pageLen {
 		return pageCount % pageLen
 	} else {
 		return pageLen

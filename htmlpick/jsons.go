@@ -1,17 +1,30 @@
-// api返回的json格式，还没想好= =
+// TODO: api 格式：
 
 package htmlpick
 
 import (
 	"encoding/json"
 	"regexp"
+
 	"github.com/OuSatoru/eosapi/vals"
 )
 
 type MailList struct {
-	UserName string `json:"user_name"`
-	TaskId string `json:"task_id"`
+	UserName  string `json:"user_name"`
+	TaskId    string `json:"task_id"`
 	MailTitle string `json:"mail_title"`
+}
+
+type attachment struct {
+	AttachmentName string `json:"attachment_name"`
+	AttachmentUrl  string `json:"attachment_url"`
+}
+
+type MailPage struct {
+	From       string       `json:"from"`
+	To         string       `json:"to"`
+	Attachment []attachment `json:"attachment,omitempty"`
+	Body       string       `json:"body"`
 }
 
 func UnreadListJson(htm string) string {
