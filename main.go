@@ -1,8 +1,8 @@
 package main
 
 import (
-	"net/http"
 	"github.com/OuSatoru/eosapi/svr"
+	"net/http"
 )
 
 func main() {
@@ -14,8 +14,9 @@ func main() {
 	//password := "000000"
 	//fmt.Println(htmlpick.HasLogin(hoyi.Login(userName, password, client, jsessionid)))
 	//b, _ := ioutil.ReadFile("Unread.html")
-	//fmt.Println(htmlpick.UnreadListJson(string(b)))
+	//fmt.Println(htmlpick.UnreadCount(string(b)))
 	http.HandleFunc("/login", svr.Login)
+	http.HandleFunc("/todolist", svr.TodoList)
 	http.ListenAndServe(":2333", nil)
 }
 

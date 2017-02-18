@@ -94,3 +94,38 @@ func MailUnread(userName string, password string, client *http.Client, jsessioni
 func ExecTask(userName string, password string, client *http.Client, jsessionid string, taskId string) string {
 	return getWithCookie(userName, password, client, jsessionid, executeTask + taskId)
 }
+
+func MailUnreadPage(userName string, password string, client *http.Client, jsessionid string, page int, pageLen int, pageCount int) string {
+	req, err := http.NewRequest("POST", list4todo, strings.NewReader(fmt.Sprintf("_eosFlowAction=queryWithPage&criteria%%2F_entity=com.eos.workflow.data.WFWorkItem&criteria%%2F_orderby%%5B1%%5D%%2F_property=startTime&criteria%%2F_orderby%%5B1%%5D%%2F_sort=desc&page%%2Fbegin=%d&page%%2Flength=%d&page%%2Fcount=%d&page%%2FisCount=true", beginCk(page, pageLen, pageCount), pageLenCk(page, pageLen, pageCount), pageCount)))
+	if err != nil {
+		panic(err)
+	}
+	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
+	req.Header.Set("Cookie", fmt.Sprintf("hoyi_username=%s; hoyi_password=%s; hoyi_companyid=1; hoyi_version=; JSESSIONID=%s; hoyi_last_visit_time=20170217095659", userName, password, jsessionid))
+	resp, err := client.Do(req)
+	if err != nil {
+		panic(err)
+	}
+	defer resp.Body.Close()
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	return string(body)
+}
+
+func beginCk(page int, pageLen int, pageCount int) int {
+	if page > pageCount / pageLen {
+		return (pageCount / pageLen) * pageLen
+	} else {
+		return (page - 1) * pageLen
+	}
+}
+
+func pageLenCk(page int, pageLen int, pageCount int) int {
+	if page > pageCount / pageLen {
+		return pageCount % pageLen
+	} else {
+		return pageLen
+	}
+}

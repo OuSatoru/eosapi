@@ -2,6 +2,7 @@ package htmlpick
 
 import (
 	"regexp"
+	"strconv"
 )
 
 // {"114514": "第一条", "23333": "第二条"}
@@ -15,5 +16,19 @@ func UnreadListMap(htm string) map[string]string {
 		return m
 	} else {
 		return nil
+	}
+}
+
+func UnreadCount(htm string) int {
+	reg := regexp.MustCompile(`共\s*?(\d+)\s*?条记录`)
+	if reg.MatchString(htm) {
+		ls := reg.FindAllStringSubmatch(htm, -1)
+		count, err := strconv.Atoi(ls[0][1])
+		if err != nil {
+			panic(err)
+		}
+		return count
+	} else {
+		return 0
 	}
 }
