@@ -1,0 +1,285 @@
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/jquery-1.3.2.js" ></script>
+	<link href="/hoyi/common/theme/style-sys.css" type="text/css" rel="stylesheet" >
+	<link href="/hoyi/css/tablesorter.css" type="text/css" rel="stylesheet" >
+	<link href="/hoyi/css/nav_min_dcb1b309.css" type="text/css" rel="stylesheet" >
+	<script type="text/javascript">
+		jQuery.noConflict();
+	   	var contextPath = "/hoyi"; // you should define the contextPath of web application
+		var EOSDEBUG = false;
+	</script>
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/zh_CN/message.js" ></script>
+	<link href="/hoyi/common/skins/skin0/theme/style-component.css" type="text/css" rel="stylesheet" >
+	<script  type="text/javascript"  src="/hoyi/common/skins/skin0/scripts/resource.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/fckeditor/fckeditor.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/scripts/eos-web.js.gzip" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/lib/mootools.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/hy_common.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/tablesorter.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/FileUpload.js" ></script>
+	<script  type="text/javascript"  src="/hoyi/common/javascripts/MultiSelect.js" ></script>
+	
+<link href="/hoyi/css/style1/style-custom.css" type="text/css" rel="stylesheet" >
+
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>接受邮件</title>
+<script  type="text/javascript"  src="/hoyi/comm/ueditor/editor_config.js" ></script>
+<script  type="text/javascript"  src="/hoyi/comm/ueditor/editor_all.js" ></script>
+<link href="/hoyi/comm/ueditor/themes/default/ueditor.css" type="text/css" rel="stylesheet" >
+
+<script  type="text/javascript"  src="/hoyi/comm/js/otherVilidate.js" ></script>
+
+
+<script  type="text/javascript"  src="/hoyi/comm/js/picturePreview.js" ></script>
+<link href="/hoyi/comm/css/picturePreview.css" type="text/css" rel="stylesheet" >
+<script  type="text/javascript"  src="/hoyi/comm/imageonline/officeonline.js" ></script>
+
+<style type="text/css">
+	.info_p
+	{
+		padding:1px;
+	}
+	#ididid{  
+		position:relative;  
+		width:350px;  
+		height:20px;  
+		line-height:20px;  
+		text-overflow:ellipsis;  
+		white-space:normal;  
+		*white-space:nowrap;  
+		overflow:hidden;  
+		border:0px solid #999;  
+	}  
+	#ididid span{  
+		position:absolute;  
+		top:0;  
+		right:0;  
+		display:block;  
+		float:left;  
+	}  
+	#ididid span:after{content:"...";}
+</style>
+
+</head>
+<body style="padding:0px;margin:0px;">
+<form  id="emailReceive" name="emailReceive" action="com.hoyi.oa.email.email_accept.flow" target="_self" enctype="multipart/form-data" method="post" onsubmit="return checkForm(this);">
+	<input type="hidden" name="_eosFlowAction" value="readEmail" />
+	
+	<table align="center" border="0" width="100%" rules="none" style="background-color:rgb(247, 253, 253);">
+	<tr class="form_bottom">
+		<td colspan="2">
+			<span style="float:left;">
+				<input type="button" value="已读"  class="button" onclick="readEmail();" style="cursor:pointer;">
+				<input type="button" value="回复" class="button" onclick="replyEmail();" style="cursor:pointer;">
+				<input type="button" value="转发" class="button" onclick="transEmail();" style="cursor:pointer;">
+			</span>
+			
+			<input type="hidden" name="replyEmail/replyid" value='178854'/>
+			<input type="hidden" name="replyEmail/title" value='回复：元数据相关'/>
+			<input type="hidden" name="replyEmail/fromempid" value="757"/>
+			<input type="hidden" name="replyEmail/delflag" value="0"/>
+			<input type="hidden" name="replyEmail/toempids" value='702'/>
+			
+			
+			<input type="hidden" name="replyEmail/sendids" value="E702:汪洋">
+			
+			<input type="hidden" name="transEmail/transids" value='178854'/>
+			<input type="hidden" name="transEmail/title" value='转发：元数据相关'/>
+			<input type="hidden" name="transEmail/fromempid" value="757"/>
+			<input type="hidden" name="transEmail/content" value='转发：&lt;p&gt;登录地址：&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;http://32.185.20.61:9080/bimetadata-web/login&quot;&gt;http://32.185.20.61:9080/bimetadata-web/login&lt;/a&gt;&lt;/p&gt;&lt;p&gt; &lt;/p&gt;'/>
+			<input type="hidden" name="transEmail/delflag" value="0"/>
+		</td>
+	</tr>
+	<tr >
+		<td colspan="1" style="border-right:none;width:5%;padding:0px;margin:1px;">        <span>发件人:</span></td>
+		<td colspan="1" >		<span>汪洋</span></td>
+	</tr>
+	<tr>
+		<td colspan="1">		<span>时&nbsp;&nbsp;&nbsp;&nbsp;间:</span></td>
+		<td colspan="1">		<span>2017-02-18 14:33:13</span></td>
+	</tr>
+	<tr>
+		<td colspan="1">		<span>主&nbsp;&nbsp;&nbsp;&nbsp;题:</span></td>
+		<td colspan="1">		<span>元数据相关</span></td>
+	</tr>
+	
+	
+	<tr>
+		<td colspan="1">		<span>收件人:</span></td>
+		<td colspan="1">
+				<!--  	
+				<span>
+					
+						王劲松(13805110370);
+						
+					
+						王聪(13401766862);
+						
+					
+				</span>
+				-->	
+				<div id="ididid">
+					
+						王劲松(13805110370);
+						
+					
+						王聪(13401766862);
+						
+					<span></span>
+				</div>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="1">
+			附&nbsp;&nbsp;&nbsp;&nbsp;件:		
+		</td>
+		<td colspan="1">
+			
+				
+				
+				
+				
+				
+				<a href="/hoyi/comm/attachments/downloadByFilepath.jsp?filePath=Z:\pzuserupload1\8ae580095a181fdd015a4fec9a477217.doc&fileName=%E5%85%83%E6%95%B0%E6%8D%AE%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F%E6%93%8D%E4%BD%9C%E6%89%8B%E5%86%8C.doc&fileId=305404&type=.doc&fileSize=7631872&editable=false" >
+					1.元数据管理系统操作手册.doc
+				</a>
+                                  &nbsp;&nbsp;
+                
+				
+			<br/>
+			
+				
+				
+				
+				
+				
+				<a href="/hoyi/comm/attachments/downloadByFilepath.jsp?filePath=Z:\pzuserupload1\8ae580095a181fdd015a4fec9e42721a.pdf&fileName=%E5%85%83%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E6%B5%81%E7%A8%8B%E6%89%8B%E5%86%8C.pdf&fileId=305405&type=.pdf&fileSize=8248972&editable=false" >
+					2.元数据操作流程手册.pdf
+				</a>
+                                  &nbsp;&nbsp;
+                
+				
+			<br/>
+				
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			正&nbsp;&nbsp;&nbsp;&nbsp;文:		
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<script id="myEditor" style="height:95%;width:100%;" type="html">  
+				<p>登录地址：</p><p><a href="http://32.185.20.61:9080/bimetadata-web/login">http://32.185.20.61:9080/bimetadata-web/login</a></p><p> </p>
+     		</script>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<div id="shortReplyDiv">
+				
+				
+				<textarea name="shortReply/content" style="width:100%;" onblur="if(this.value=='') {this.value = '快捷回复给：汪洋...';}" onfocus="if(this.value=='快捷回复给：汪洋...') {this.value = '';}" filter="false" rows="4">快捷回复给：汪洋...</textarea>
+				<input id="shortReplyBtn" type="button" value="快捷回复"  class="button" style="cursor:pointer;" disabled="disabled"
+				onclick="shortReply();">
+				<input type="hidden" name="shortReply/replyid" value='178854'/>
+				<input type="hidden" name="shortReply/title" value='回复：元数据相关'/>
+				<input type="hidden" name="shortReply/fromempid" value="757"/>
+				<input type="hidden" name="shortReply/delflag" value="0"/>
+				<input type="hidden" name="shortReply/emailstatus" value="02"/>
+				<input type="hidden" name="shortReply/toempids" value='702'/>
+			</div>
+		</td>
+	</tr>
+	<tr class="form_bottom">
+		<td colspan="2">
+			<span style="float:right;">
+				<input type="button" value="已读"  class="button" onclick="readEmail();" style="cursor:pointer;">
+				
+				<input type="button" value="回复" class="button" onclick="replyEmail();" style="cursor:pointer;">
+				
+				<input type="button" value="转发" class="button" onclick="transEmail();" style="cursor:pointer;">
+			</span>
+		</td>
+	</tr>
+	</table>
+
+<input type='hidden' name='_eosFlowKey' value='675cbb09-78ac-4e33-9c85-024a5c0eaacb.view0'/><input type='hidden' name='_eosFlowDataContext' value='rO0ABXNyABFqYXZhLnV0aWwuSGFzaE1hcAUH2sHDFmDRAwACRgAKbG9hZEZhY3RvckkACXRocmVzaG9sZHhwP0AAAAAAAAx3CAAAABAAAAABdAAId29ya2l0ZW1zcgApY29tLnByaW1ldG9uLmRhdGEuc2RvLmltcGwuRGF0YU9iamVjdEltcGx4GL04YzDgqAIAAHhyAC5jb20ucHJpbWV0b24uZGF0YS5zZG8uaW1wbC5CYXNpY0RhdGFPYmplY3RJbXBs+9GVtEkm8NMDAAB4cHQAFWNvbS5lb3Mud29ya2Zsb3cuZGF0YXQACldGV29ya0l0ZW13BAAAACR0AAp3b3JrSXRlbUlEdwwAAAADAAAAAAAbNJN0AAx3b3JrSXRlbU5hbWV3BAAAAAl0AC/mlrDpgq7ku7bvvJrlhYPmlbDmja7nm7jlhbMo5Y+R5Lu25Lq677ya5rGq5rSLKXQADHdvcmtJdGVtVHlwZXcEAAAACXQAAU10AAx3b3JrSXRlbURlc2N3BAAAAAl0AAB0AAxjdXJyZW50U3RhdGV3CAAAAAEAAAAKdAALcGFydGljaXBhbnR3BAAAAAl0AAM3NzZ0AAhwcmlvcml0eXcIAAAAAQAAADx0AAlpc1RpbWVPdXR3BAAAAAl0AAFOdAAIbGltaXROdW13DAAAAAMAAAAAAAAAAHQADGxpbWl0TnVtRGVzY3cEAAAACXQAAHQACmNyZWF0ZVRpbWV3BAAAAAlzcgAOamF2YS51dGlsLkRhdGVoaoEBS1l0GQMAAHhwdwgAAAFaT+ykKHh0AAlzdGFydFRpbWV3BAAAAAlzcQB+ABl3CAAAAVpP7KQoeHQACWFjdGlvblVSTHcEAAAACXQAI2NvbS5ob3lpLm9hLmVtYWlsLmVtYWlsX2FjY2VwdC5mbG93dAANcHJvY2Vzc0luc3RJRHcMAAAAAwAAAAAABGmmdAAOYWN0aXZpdHlJbnN0SUR3DAAAAAMAAAAAABPr8nQACnN0YXRlc0xpc3R3BAAAAAl0AAB0AAp0aW1lT3V0TnVtdwgAAAABAAAAAHQADnRpbWVPdXROdW1EZXNjdwQAAAAJdAAAdAAPcHJvY2Vzc0luc3ROYW1ldwQAAAAJdAAV5rGq5rSL5o+Q5Lqk55qE6YKu5Lu2dAAQYWN0aXZpdHlJbnN0TmFtZXcEAAAACXQADOaOpeaUtumCruS7tnQADHByb2Nlc3NEZWZJRHcMAAAAAwAAAAAAAAG5dAAOcHJvY2Vzc0RlZk5hbWV3BAAAAAl0ABdjb20uaG95aS5vYS5lbWFpbC5lbWFpbHQADXByb2Nlc3NDaE5hbWV3BAAAAAl0AAbpgq7ku7Z0AA1hY3Rpdml0eURlZklEdwQAAAAJdAANY2hlY2tBY3Rpdml0eXQACWFzc2lzdGFudHcEAAAACXB0AAhiaXpTdGF0ZXcIAAAAAQAAAAB0AAphY3Rpb25NYXNrdwQAAAAJdAAITk5ZWU5ZTk50AAphbGxvd0FnZW50dwQAAAAJdAABMXQADnJvb3RQcm9jSW5zdElEdwwAAAADAAAAAAAEaaZ0AAd1cmxUeXBldwQAAAAJdAABRnQACXBhcnRpTmFtZXcEAAAACXQABueOi+iBqnQAC2NhdGFsb2dVVUlEdwQAAAAJdAAgNzljZWY3MTgxOTExNDAyMDg0ZjhlMWYyZDA0OGU0NTl0AAtjYXRhbG9nTmFtZXcEAAAACXQABumCruS7tnQAC2RlYWxPcGluaW9udwQAAAAJcHQACmRlYWxSZXN1bHR3BAAAAAlwdAAMcGFydGljaXBhbnRzdwQAAAAJdXIAGVtMY29tbW9uai5zZG8uRGF0YU9iamVjdDstYoZGqQQ5+AIAAHhwAAAAAHh4'/></form><script type="text/javascript">checkOnblur($id('emailReceive'));checkOnsubmit($id('emailReceive'));</script>
+
+<script type="text/javascript">
+	function globalTimer()
+	{
+		if($name('shortReply/content').value&&$name('shortReply/content').value!='快捷回复给：汪洋...')
+		{
+			$id('shortReplyBtn').disabled = false;
+		}
+		else
+		{
+			$id('shortReplyBtn').disabled = true;
+		}
+	}
+	function shortReply()
+	{
+		var frm = $name('emailReceive');
+		frm.elements['_eosFlowAction'].value = 'shortReply';
+		frm.submit();
+	}
+	function readEmail()
+	{
+		var frm = $name('emailReceive');
+		frm.elements['_eosFlowAction'].value = 'readEmail';
+		frm.submit();
+	}
+	function replyEmail()
+	{
+		var frm = $name('emailReceive');
+		frm.elements['_eosFlowAction'].value = 'replyEmail';
+		frm.submit();
+	}
+	function transEmail()
+	{
+		var frm = $name('emailReceive');
+		frm.elements['_eosFlowAction'].value = 'transEmail';
+		frm.submit();
+	}
+	function showEmailById(emailid)
+	{
+		if(emailid)
+			showModalCenter('com.hoyi.oa.email.email_view.flow?emailid='+emailid,null,null,800,400,'邮件详情');
+	}
+	window.onload = function()
+	{
+		window.setInterval('globalTimer()',100);
+	}
+</script>
+<script>
+	//var editor = UE.getEditor('myEditor')
+	var option = {
+		toolbars:[],
+        //fullscreen : true, //是否开启初始化时即全屏，默认关闭
+        minFrameHeight:200,
+        //wordCount:true,          //是否开启字数统计
+		//maximumWords:100000,       //允许的最大字符数
+        readonly:true,
+		autoHeightEnabled:false,    // 是否自动长高,默认true
+        textarea:'emailContent' 　　　　　　　　　　 
+	};
+	var editor = new baidu.editor.ui.Editor(option); 
+	editor.render("myEditor"); 
+</script>
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
