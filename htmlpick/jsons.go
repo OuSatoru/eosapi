@@ -5,6 +5,7 @@ package htmlpick
 import (
 	"encoding/json"
 	"regexp"
+	"fmt"
 
 	"github.com/OuSatoru/eosapi/vals"
 )
@@ -23,6 +24,8 @@ type attachment struct {
 type MailPage struct {
 	From       string       `json:"from"`
 	To         string       `json:"to"`
+	Time       string       `json:"time"`
+	Subject    string       `json:"subject"`
 	Attachment []attachment `json:"attachment,omitempty"`
 	Body       string       `json:"body"`
 }
@@ -43,4 +46,24 @@ func UnreadListJson(htm string) string {
 	} else {
 		return ""
 	}
+}
+
+func MailJson(htm string) string {
+	reg1 := regexp.MustCompile(`(发件人:|时&nbsp;&nbsp;&nbsp;&nbsp;间:|主&nbsp;&nbsp;&nbsp;&nbsp;题:)</span></td>\s*?<td colspan="1" *>\s*?<span>(.+?)</span></td>`)
+	if reg1.MatchString(htm) {
+		for k, v := range reg1.FindAllStringSubmatch(htm, -1)[0] {
+			fmt.Println(k, v)
+		}
+	} else {
+		fmt.Println("aaa")
+	}
+	reg2 := regexp.MustCompile(`<div id="ididid">\s*?(\S+(\s+\S+)*)\s*?<span></span>`)
+	if reg2.MatchString(htm) {
+		for k, v := range reg2.FindAllStringSubmatch(htm, -1)[0] {
+			fmt.Println(k, v)
+		}
+	} else {
+		fmt.Println("bbb")
+	}
+	return ""
 }

@@ -3,6 +3,7 @@ package htmlpick
 import (
 	"regexp"
 	"strconv"
+	"time"
 )
 
 // {"114514": "第一条", "23333": "第二条"}
@@ -30,5 +31,12 @@ func UnreadCount(htm string) int {
 		return count
 	} else {
 		return 0
+	}
+}
+
+func UnreadCountChan(htm string, c chan int) {
+	for {
+		c <- UnreadCount(htm)
+		time.Sleep(5 * time.Second)
 	}
 }

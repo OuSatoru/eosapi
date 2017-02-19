@@ -6,3 +6,4 @@ var Client = &http.Client{}
 var Jsessionid string
 var UserName string
 var Password string
+var UnreadCount int

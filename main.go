@@ -1,9 +1,9 @@
 package main
 
 import (
-	"net/http"
-
-	"github.com/OuSatoru/eosapi/svr"
+	"io/ioutil"
+	"fmt"
+	"github.com/OuSatoru/eosapi/htmlpick"
 )
 
 func main() {
@@ -14,9 +14,9 @@ func main() {
 	//userName := "09800903"
 	//password := "000000"
 	//fmt.Println(htmlpick.HasLogin(hoyi.Login(userName, password, client, jsessionid)))
-	//b, _ := ioutil.ReadFile("Unread.html")
-	//fmt.Println(htmlpick.UnreadCount(string(b)))
-	http.HandleFunc("/login", svr.Login)
-	http.HandleFunc("/todolist", svr.TodoList)
-	http.ListenAndServe(":2333", nil)
+	b, _ := ioutil.ReadFile("Task.html")
+	fmt.Println(htmlpick.MailJson(string(b)))
+	//http.HandleFunc("/login", svr.Login)
+	//http.HandleFunc("/todolist", svr.TodoList)
+	//http.ListenAndServe(":2333", nil)
 }
