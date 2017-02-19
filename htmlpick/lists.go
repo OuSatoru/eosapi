@@ -4,6 +4,8 @@ import (
 	"regexp"
 	"strconv"
 	"time"
+
+	"github.com/OuSatoru/eosapi/vals"
 )
 
 // {"114514": "第一条", "23333": "第二条"}
@@ -34,9 +36,9 @@ func UnreadCount(htm string) int {
 	}
 }
 
-func UnreadCountChan(htm string, c chan int) {
+func UnreadCountVal(htm string) {
 	for {
-		c <- UnreadCount(htm)
+		vals.UnreadCount = UnreadCount(htm)
 		time.Sleep(5 * time.Second)
 	}
 }
