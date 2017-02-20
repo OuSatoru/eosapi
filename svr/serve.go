@@ -9,15 +9,18 @@ import (
 	"github.com/OuSatoru/eosapi/hoyi"
 	"github.com/OuSatoru/eosapi/htmlpick"
 	"github.com/OuSatoru/eosapi/vals"
+	"github.com/OuSatoru/eosapi/db"
 )
 
 func Login(w http.ResponseWriter, r *http.Request) {
-	vals.Jsessionid = hoyi.Jsessionid()
+	jsessionid := hoyi.Jsessionid()
 	if r.Method == "POST" {
 		r.ParseForm()
-		vals.UserName = r.Form["username"][0]
-		vals.Password = r.Form["password"][0]
-		if htmlpick.HasLogin(hoyi.LoginEos(vals.UserName, vals.Password, vals.Client, vals.Jsessionid)) {
+		userName := r.Form["username"][0]
+		password := r.Form["password"][0]
+		if htmlpick.HasLogin(hoyi.LoginEos(userName, password, vals.Client, jsessionid)) {
+			db.InsUser(vals.Db, userName, password)
+			db.UpdJsession(vals.Db, userName, jsessionid)
 			fmt.Fprint(w, "OK")
 		} else {
 			fmt.Fprint(w, "Login Failed")
@@ -30,22 +33,37 @@ func Login(w http.ResponseWriter, r *http.Request) {
 
 func TodoList(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm()
-	htm := hoyi.MailUnread(vals.UserName, vals.Password, vals.Client, vals.Jsessionid)
-	page := 1
-	if r.Form.Get("page") != "" && r.Form.Get("page") != "1" {
-		page, _ = strconv.Atoi(r.Form.Get("page"))
+	userName := r.Form.Get("username")
+	if userName == "" {
+		fmt.Fprint(w, htmlpick.ErrJson(1, "无用户名"))
+		return
 	}
-	pageLen := 10
-	if r.Form.Get("len") != "" && r.Form.Get("len") != "10" {
-		pageLen, _ = strconv.Atoi(r.Form.Get("len"))
-	}
-	if page == 1 && pageLen == 10 {
-		fmt.Fprint(w, htmlpick.UnreadListJson(htm))
+	jsessionid := db.SelJsession(vals.Db, userName)
+	password := db.SelPwd(vals.Db, userName)
+	c := make(chan int)
+	go htmlpick.UnreadCountChan(hoyi.MailUnread(userName, password, vals.Client, jsessionid), c)
+	var page int
+	var pageLen int
+	var err error
+	if ps := r.Form.Get("page"); ps != "" {
+		page, err = strconv.Atoi(ps)
+		if err != nil {
+			panic(err)
+		}
 	} else {
-		pageCount := htmlpick.UnreadCount(htm)
-		htm2 := hoyi.MailUnreadPage(vals.UserName, vals.Password, vals.Client, vals.Jsessionid, page, pageLen, pageCount)
-		fmt.Fprint(w, htmlpick.UnreadListJson(htm2))
+		page = 1
 	}
+	if pls := r.Form.Get("len"); pls != "" {
+		pageLen, err = strconv.Atoi(pls)
+		if err != nil {
+			panic(err)
+		}
+	} else {
+		pageLen = 10
+	}
+	htm := hoyi.MailUnreadPage(userName, password, vals.Client, jsessionid, page, pageLen, <-c)
+	fmt.Fprint(w, htmlpick.UnreadListJson(htm, userName))
+
 }
 
 func ExecTask(w http.ResponseWriter, r *http.Request) {

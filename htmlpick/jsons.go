@@ -6,8 +6,6 @@ import (
 	"encoding/json"
 	"regexp"
 	"fmt"
-
-	"github.com/OuSatoru/eosapi/vals"
 )
 
 type MailList struct {
@@ -30,13 +28,27 @@ type MailPage struct {
 	Body       string       `json:"body"`
 }
 
-func UnreadListJson(htm string) string {
+type Err struct {
+	ErrCode int `json:"errcode"`
+	ErrMsg string `json:"errmsg"`
+}
+
+func ErrJson(errcode int, errmsg string) string {
+	es := Err{ErrCode:errcode, ErrMsg:errmsg}
+	if j, err := json.MarshalIndent(es, "", "  "); err != nil {
+		panic(err)
+	} else {
+		return string(j)
+	}
+}
+
+func UnreadListJson(htm string, userName string) string {
 	reg := regexp.MustCompile(`<a href="javascript:return void\(0\);" onclick='executeTask\((\d+?)\)'>\s*(\S+?)\s*</a>`)
 	if reg.MatchString(htm) {
 		iList := reg.FindAllStringSubmatch(htm, -1)
 		mList := make([]MailList, len(iList))
 		for k, il := range iList {
-			mList[k] = MailList{UserName: vals.UserName, TaskId: il[1], MailTitle: il[2]}
+			mList[k] = MailList{UserName: userName, TaskId: il[1], MailTitle: il[2]}
 		}
 		if j, err := json.MarshalIndent(mList, "", "  "); err != nil {
 			panic(err)
