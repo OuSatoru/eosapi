@@ -17,6 +17,16 @@ func InsUser(db *sql.DB, userName string, password string) int64 {
 	return id
 }
 
+func RepUser(db *sql.DB, userName string, password string) int64 {
+	stmt, err := db.Prepare("REPLACE INTO login(username, password) VALUES (?, ?)")
+	checkErr(err)
+	res, err := stmt.Exec(userName, password)
+	checkErr(err)
+	id, err := res.LastInsertId()
+	checkErr(err)
+	return id
+}
+
 func UpdJsession(db *sql.DB, userName string, jsession string) int64 {
 	stmt, err := db.Prepare("UPDATE login SET jsessionid = ? WHERE username = ?")
 	checkErr(err)

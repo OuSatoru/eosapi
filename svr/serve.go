@@ -19,7 +19,7 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		userName := r.Form["username"][0]
 		password := r.Form["password"][0]
 		if htmlpick.HasLogin(hoyi.LoginEos(userName, password, vals.Client, jsessionid)) {
-			db.InsUser(vals.Db, userName, password)
+			db.RepUser(vals.Db, userName, password)
 			db.UpdJsession(vals.Db, userName, jsessionid)
 			fmt.Fprint(w, "OK")
 		} else {
